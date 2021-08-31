@@ -3,7 +3,7 @@
 Plugin Name: Documents Download Delay
 Plugin URI: http://seocherry.ru/
 Description: Загрузка файлов с задержкой
-Version: 1.0
+Version: 2.0
 Author: Антон SeoCherry.ru
 Author URI: http://seocherry.ru/
 Text Domain: dload-delay
@@ -50,73 +50,54 @@ function send_options_frontend() {
 add_action('admin_menu', 'dloaddelay_option_menu', 1);
 function dloaddelay_option_menu() {
 	add_options_page('Задержка скачивания файлов', 'Загрузка с таймером', 'manage_options', 'dload-delay', 'dloaddelay_options_page');
-	add_action( 'admin_init', 'register_dloaddelay_settings' );
+	
 }
-
+add_action( 'init', 'register_dloaddelay_settings' );
 function register_dloaddelay_settings() {
 	//register our settings
-	register_setting( 'dload-delay', 'delay_time' );
-	register_setting( 'dload-delay', 'dloaddelay_text' );
-	register_setting( 'dload-delay', 'dload_newtab' );
-
-	if ( get_option( 'delay_time' ) === false ) {
-		add_option( 'delay_time', '10' );
-		
-	} 	
-	if ( get_option( 'dloaddelay_text' ) === false ) {
-		add_option( 'dloaddelay_text', '<div class="dload-timer-container">
-						<div class="left-timer">
-							<div class="dload-timer-info"><p>Скачивание начнется через:</p></div>
-							<div class="dload-timer-cd"></div>
-						</div>
-						<div class="right-info">
-							<ol><li>Система подготавливает ваш файл, <b>загрузка скоро начнется</b></li><li>Ниже можно вставить кнопки лайков или что-то еще</li></ol>
-						</div>
-					</div>' );
-		
-	}  	
-
-	if ( get_option( 'dload_newtab' ) === false ) {
-		add_option( 'dload_newtab', "false" );
-	}
+	register_setting( 'dload-delay', 'dload_delay_time',
+    array(
+        'type'         => 'integer',
+        'show_in_rest' => true,
+        'default'      => 10,
+    ) );
+    register_setting( 'dload-delay', 'dload_delay_extensions',
+    array(
+        'type'         => 'array',
+        'show_in_rest' => true,
+        'default'      => array('pdf','doc','docx','xls','xlsx','rtf','txt','pptx'),
+    ) );
+	register_setting( 'dload-delay', 'dload_delay_template',
+    array(
+        'type'         => 'string',
+        'show_in_rest' => true,
+        'default' => '<div class="dload-timer-container">
+        <div class="left-timer">
+            <div class="dload-timer-info"><p>Скачивание начнется через:</p></div>
+            <div class="dload-timer-cd"></div>
+        </div>
+        <div class="right-info">
+            <ol><li>Система подготавливает ваш файл, <b>загрузка скоро начнется</b></li><li>Ниже можно вставить кнопки лайков или что-то еще</li></ol>
+        </div>
+    </div>'
+    ) );
 	
 }
 
+// admin page content callback
 function dloaddelay_options_page(){
 	if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'Не достаточно прав для доступа к странице.' ) );
 	}
 	?>
-	<div class="wrap"><h1>Настройки задержки переход по ссылке</h1>
-		<hr>
-<div class="dloaddelay-settings-wrap">
-	<form method="post" action="options.php">
-
-	<?php settings_fields( 'dload-delay' ); ?>
-    <?php do_settings_sections( 'dload-delay' ); ?>
-    <table class="form-table">
-        <tr valign="top">
-        <th scope="row"><label for="delay_time">Время в секундах</label></th>
-        <td><input type="number" min="0" name="delay_time" value="<?php echo esc_attr( get_option('delay_time') ); ?>" /></td>
-        </tr>        
-        <tr valign="top">
-        <th scope="row"><label for="delay_time">Текст ожидания</label></th>
-            <td><textarea cols="150" rows="20" name="dloaddelay_text"><?php echo esc_attr( get_option('dloaddelay_text') ); ?>"</textarea></td>
-        </tr>
-        <tr valign="top">
-        <th scope="row"><label for="dload_newtab">Открывать ссылки на новой вкладке? (браузеры будут блокировать и предлагать разрешить действие)</label></th>
-        <td>		<select name="dload_newtab" id="dload_newtab" >
-		<option <?php if(esc_attr( get_option('dload_newtab') ) == 'false') { echo 'selected="selected"'; } ?> value="false">Нет</option>
-		<option <?php if(esc_attr( get_option('dload_newtab') ) == 'true') { echo 'selected="selected"'; } ?> value="true">Да</option>
-		</select> </td>
-        </tr>
-         
-    </table>
-    
-    <?php submit_button(); ?>
-
-	</form>
-	</div></div>
+	<div id="seocherry-dload-delay-container"></div>
 	<?php
-
 }
+
+// admin page assets
+function seocherry_dloaddelay_assets() {
+	wp_enqueue_script( 'seocherry-dload-delay-script', plugins_url( '/', __FILE__ ) . 'build/build.js', array( 'wp-api', 'wp-i18n', 'wp-components', 'wp-element', 'wp-notices' ), get_dloaddelay_version(), true );
+	wp_enqueue_style( 'seocherry-dload-delay-style', plugins_url( '/', __FILE__ ) . 'build/build.css', array( 'wp-components' ) );
+}
+
+add_action('admin_enqueue_scripts', 'seocherry_dloaddelay_assets');
