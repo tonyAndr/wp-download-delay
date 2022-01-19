@@ -1,0 +1,196 @@
+# Copyright (C) 2021 SeoCherry.ru
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Files Download Delay 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/files-download-delay\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-09-16T11:54:24+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: dload-delay-td\n"
+
+#. Plugin Name of the plugin
+#: build/build.js:19
+msgid "Files Download Delay"
+msgstr ""
+
+#. Description of the plugin
+msgid "Wraps your download links with countdown timer and allows you to add custom text, html or shortcode to output subscription form, ads, related content, share buttons, etc."
+msgstr ""
+
+#. Author of the plugin
+msgid "SeoCherry.ru"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://seocherry.ru/"
+msgstr ""
+
+#: admin.php:188
+msgid "You don't have permission to see this page."
+msgstr ""
+
+#: build/build.js:19
+msgid "HTML tags are allowed. Enable support for shortcodes and script tags by switching to the "
+msgstr ""
+
+#: build/build.js:19
+msgid "Shortcodes and HTML tags (including script tags) are allowed."
+msgstr ""
+
+#: build/build.js:19
+msgid "Loading UI..."
+msgstr ""
+
+#: build/build.js:19
+msgid "Restore defaults"
+msgstr ""
+
+#: build/build.js:19
+msgid "Save"
+msgstr ""
+
+#: build/build.js:19
+msgid "Display settings"
+msgstr ""
+
+#: build/build.js:19
+msgid "Delay time"
+msgstr ""
+
+#: build/build.js:19
+msgid "Specify time in seconds for download delay"
+msgstr ""
+
+#: build/build.js:19
+msgid "Countdown text/html"
+msgstr ""
+
+#: build/build.js:19
+msgid "This text will appear by the countdown timer. Ex.: \"Download will start soon\""
+msgstr ""
+
+#: build/build.js:19
+msgid "Extra text/html"
+msgstr ""
+
+#: build/build.js:19
+msgid "Success header"
+msgstr ""
+
+#: build/build.js:19
+msgid "Header when download started"
+msgstr ""
+
+#: build/build.js:19
+msgid "Success info text"
+msgstr ""
+
+#: build/build.js:19
+msgid "Insert any text, subsciption form, advertisments, etc. HTML and shortcodes are allowed."
+msgstr ""
+
+#: build/build.js:19
+msgid "Failed header"
+msgstr ""
+
+#: build/build.js:19
+msgid "Header when download failed"
+msgstr ""
+
+#: build/build.js:19
+msgid "Failed info text"
+msgstr ""
+
+#: build/build.js:19
+msgid "Maybe requested files doesn't exist anymore. Any advice or feedback form could be placed here. HTML and shortcodes are allowed."
+msgstr ""
+
+#: build/build.js:19
+msgid "Auto-wrap settings"
+msgstr ""
+
+#: build/build.js:19
+msgid "Enable auto wrap"
+msgstr ""
+
+#: build/build.js:19
+msgid "Automatically wrap all file links in articles with corresponding file extensions"
+msgstr ""
+
+#: build/build.js:19
+msgid "Files extensions"
+msgstr ""
+
+#: build/build.js:19
+msgid "With class"
+msgstr ""
+
+#: build/build.js:19
+msgid "Finds all <a> tags with selected class. Also works if <a> tag's parent has this classname. Allowed characters: [a-z], [0-9], [-]."
+msgstr ""
+
+#: build/build.js:19
+msgid "CSS Customizer"
+msgstr ""
+
+#: build/build.js:19
+msgid "Enable shadow"
+msgstr ""
+
+#: build/build.js:19
+msgid "Border radius"
+msgstr ""
+
+#: build/build.js:19
+msgid "Specify border radius in px"
+msgstr ""
+
+#: build/build.js:19
+msgid "Layout settings"
+msgstr ""
+
+#: build/build.js:19
+msgid "Layout Direction"
+msgstr ""
+
+#: build/build.js:19
+msgid "Switch between 2 fullwidth rows or 2 columns. "
+msgstr ""
+
+#: build/build.js:19
+msgid "Rows"
+msgstr ""
+
+#: build/build.js:19
+msgid "Columns"
+msgstr ""
+
+#: build/build.js:19
+msgid "Columns width"
+msgstr ""
+
+#: build/build.js:19
+msgid "Relative width in %. Set left column's width, right column will be 100-[selected value]%."
+msgstr ""
+
+#: build/build.js:19
+msgid "Timer Background Colors"
+msgstr ""
+
+#: build/build.js:19
+msgid "Countdown"
+msgstr ""
+
+#: build/build.js:19
+msgid "Success"
+msgstr ""
+
+#: build/build.js:19
+msgid "Failed"
+msgstr ""

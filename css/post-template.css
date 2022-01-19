@@ -1,0 +1,79 @@
+.dload-timer-wrap {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.dload-timer-container {
+    text-align: center;
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    background: #ffffff;
+    position: relative;
+    border-radius: 3px;
+    box-shadow: 1px 1px 4px 1px #98989891;
+}
+.dload-timer-container .bgcolor {
+    background: #4397ff;
+}
+.dload-timer-container .bgcolor_success {
+    background: #39b400;
+}
+.dload-timer-container .bgcolor_failed {
+    background: #ff4625;
+}
+
+.dload-timer-container .timer-container {
+    padding: 10px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    flex-grow: 1;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.dload-timer-container .info-container {
+    flex-grow: 2;
+    padding: 10px;
+}
+
+.dload-timer-info {
+    font-size: 16px;
+    display: inline-block;
+}
+
+/* Timer animation */
+
+.dload-timer-cd {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    line-height: 44px;
+}
+.dload-timer-cd:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: " ";
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
