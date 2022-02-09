@@ -17,6 +17,7 @@ class Download_Delay_Redirect
         add_action( 'template_redirect', function(){
             $url_id = get_query_var( 'url_id' );
             if ( $url_id ) {
+
                 include plugin_dir_path( __FILE__ ) . 'redirect-page.php';
                 die;
             }

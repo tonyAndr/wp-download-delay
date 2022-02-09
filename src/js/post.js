@@ -1,4 +1,8 @@
-jQuery(document).ready(function($){
+import '../css/post-template.css';
+import fontColorContrast from 'font-color-contrast';
+import rgbHex from 'rgb-hex';
+
+jQuery(document).ready(function($) {
 
     // keep track of delayed downloads
 	let dload_list = [];
@@ -37,7 +41,7 @@ jQuery(document).ready(function($){
 	}
 
 
-    if (Boolean(dloaddelay_options['autowrap'])) {
+    if (dloaddelay_options['autowrap'] === 'true') {
         findAndWrapLinks();
     }
 
@@ -45,18 +49,29 @@ jQuery(document).ready(function($){
 		e.preventDefault();
 		let time = 0;
 		let url = '';
+        let is_redirect = undefined;
 
 		url = $(this).find('a').attr('href');
 		time = $(this).attr('data-time');
+		is_redirect = $(this).attr('data-redirect');
 
-        if (Boolean(dloaddelay_options['page_redirect'])) {
-            make_redirect(url)
+        if (is_redirect === undefined) {
+            // get from global options
+            is_redirect = dloaddelay_options['page_redirect'] === 'true';
+        } else {
+            // get from element
+            is_redirect = is_redirect === 'true';
+        }
+
+        if (is_redirect) {
+            make_redirect(url, time)
             return;
         }
 
 		if (!dload_list[url] || $('#'+dload_list[url]).css('display') === 'none') {
-			let parent = getParentParagraph(this);
-            let container_id = appendTimerContainer(parent, url);
+			// let parent = getParentParagraph(this);
+            // let container_id = appendTimerContainer(parent, url);
+            let container_id = appendTimerContainer(this, url);
 			show_inpage_timer(url, time, container_id, $(this).find('a'));
 		} 
 	})
@@ -93,7 +108,7 @@ jQuery(document).ready(function($){
 		}
 		if (!id) {
             $(wrap_element).remove();
-			id = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+			id = Math.random().toString(36).replace(/[^a-z]+/g, '').substring(0, 5);
 			$(element).after(
 				'<div id="'+id+'" class="dload-timer-wrap" data-url="'+url+'" style="display:none"></div>'
 			);
@@ -106,6 +121,19 @@ jQuery(document).ready(function($){
 	}
 
 	function show_inpage_timer(url, time, timer_container_id, link) {
+        let bg_color = rgbHex($('#'+timer_container_id).find('div.timer-container').css('background-color'));
+        let contrast_color = fontColorContrast(bg_color);
+        let font_black = contrast_color === '#000000';
+        // console.log("========== COLOR ==========", bg_color, font_color);
+        if (font_black) {
+            $('#'+timer_container_id).find('div.timer-container').addClass('font-black');
+            $('#'+timer_container_id).find('.dload-timer-cd').addClass('font-black');
+        } else {
+            $('#'+timer_container_id).find('div.timer-container').removeClass('font-black');
+            $('#'+timer_container_id).find('.dload-timer-cd').removeClass('font-black');
+        }
+
+
 		$('#'+timer_container_id).find('.dload-timer-cd').html(time);
 		$('#'+timer_container_id).fadeIn();
         document.querySelector('#'+timer_container_id).scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
@@ -127,7 +155,9 @@ jQuery(document).ready(function($){
                             // location.href=url;
                             downloadFile(url);
                         }
-                        $('#'+timer_container_id).html(dloaddelay_options['success_template']);
+                        // replace {download_link} tag
+                        let template = dloaddelay_options['success_template'].replaceAll("{download_link}", `<a href='${url}' download>${url}</a>`);
+                        $('#'+timer_container_id).html(template);
                         $('#'+timer_container_id).find('.dload-timer-cd').remove();
                     }).fail(function() { 
                         // not exists code
@@ -140,11 +170,11 @@ jQuery(document).ready(function($){
 		}, 1000)
 	}
 
-    function make_redirect(url) {
+    function make_redirect(url, time) {
         // generate url id
-        let url_id = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+        let url_id = Math.random().toString(36).replace(/[^a-z]+/g, '').substring(0, 5);
         // save download url and current page url to localstorage
-        let item = {url: url, return: location.href}
+        let item = {url, return: location.href, time}
         localStorage.setItem('fdd_' + url_id, JSON.stringify(item))
         // create custom unique link to download page using random id
         let link = document.createElement('a');
@@ -157,7 +187,7 @@ jQuery(document).ready(function($){
 	function downloadFile(filePath) {
 		let link = document.createElement('a');
 		link.href = filePath;
-		link.download = filePath.substr(filePath.lastIndexOf('/') + 1);
+		link.download = filePath.substring(filePath.lastIndexOf('/') + 1);
 		link.click();
 	}
 })

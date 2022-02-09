@@ -1,12 +1,12 @@
-# Copyright (C) 2021 SeoCherry.ru
+# Copyright (C) 2022 SeoCherry.ru
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Files Download Delay 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/files-download-"
 "delay\n"
-"POT-Creation-Date: 2021-09-16T11:54:24+00:00\n"
-"PO-Revision-Date: 2021-09-16 13:55+0200\n"
+"POT-Creation-Date: 2022-02-09T12:21:34+00:00\n"
+"PO-Revision-Date: 2022-02-09 13:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -19,15 +19,20 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 #. Plugin Name of the plugin
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Files Download Delay"
 msgstr ""
 
 #. Description of the plugin
+#, fuzzy
+#| msgid ""
+#| "Wraps your download links with countdown timer and allows you to add "
+#| "custom text, html or shortcode to output subscription form, ads, related "
+#| "content, share buttons, etc."
 msgid ""
-"Wraps your download links with countdown timer and allows you to add custom "
-"text, html or shortcode to output subscription form, ads, related content, "
-"share buttons, etc."
+"Wraps your download links with countdown timer and allows you to add the "
+"custom text, html or shortcode to output subscription form, ads, related "
+"content, share buttons, etc."
 msgstr ""
 "Создает таймер обратного отсчета при скачивании файла и позволяет добавить "
 "любой текст, html или шорткод для вывода формы email-подписки, блоков "
@@ -41,50 +46,80 @@ msgstr ""
 msgid "https://seocherry.ru/"
 msgstr ""
 
-#: admin.php:188
+#: admin.php:197
 msgid "You don't have permission to see this page."
 msgstr "У вас нет доступа к этой странице."
 
-#: build/build.js:19
+#: admin.php:202
+msgid "Settings"
+msgstr "Настройки"
+
+#: build/admin.js:19
 msgid ""
 "HTML tags are allowed. Enable support for shortcodes and script tags by "
 "switching to the "
 msgstr ""
 "HTML-теги разрешены. Для поддержки шорткодов и js-скриптов активируйте "
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Shortcodes and HTML tags (including script tags) are allowed."
 msgstr "Поддерживаются шорткоды, HTML-теги и js-скрипты."
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Loading UI..."
 msgstr "Загружаем интерфейс..."
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Restore defaults"
-msgstr "Восстановить настройки по-умолчанию"
+msgstr "Настройки по-умолчанию"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Save"
 msgstr "Сохранить"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Display settings"
 msgstr "Опции отображения"
 
-#: build/build.js:19
+#: build/admin.js:19 build/block.js:19
+msgid "Open in new tab"
+msgstr "Открыть в новой вкладке"
+
+#: build/admin.js:19
+msgid ""
+"Enabled: Will redirect user to the special download page with a timer block"
+msgstr "Включено: ссылка откроется на специальной странице в новой вкладке"
+
+#: build/admin.js:19
+msgid "Disabled: Timer will be shown on the same page below the download link"
+msgstr ""
+"Отключено: таймер будет показан на той же странице под ссылкой для загрузки"
+
+#: build/admin.js:19
 msgid "Delay time"
 msgstr "Таймер загрузки"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Specify time in seconds for download delay"
 msgstr "Укажите время задержки загрузки в секундах"
 
-#: build/build.js:19
-msgid "Countdown text/html"
-msgstr "Текст рядом с таймером"
+#: build/admin.js:19
+msgid "Countdown"
+msgstr "С таймером"
 
-#: build/build.js:19
+#: build/admin.js:19
+msgid "Success"
+msgstr "Загрузка началась"
+
+#: build/admin.js:19
+msgid "Failed"
+msgstr "При ошибке"
+
+#: build/admin.js:19
+msgid "Header (timer)"
+msgstr "Заголовок"
+
+#: build/admin.js:19
 msgid ""
 "This text will appear by the countdown timer. Ex.: \"Download will start soon"
 "\""
@@ -92,59 +127,35 @@ msgstr ""
 "Этот текст появится рядом с таймером обратного отсчета. Например: \"Загрузка "
 "начнется в ближайшее время\""
 
-#: build/build.js:19
-msgid "Extra text/html"
-msgstr "Контент при обратном отсчете"
+#: build/admin.js:19
+msgid "Body"
+msgstr "Контент"
 
-#: build/build.js:19
-msgid "Success header"
-msgstr "Скачивание началось"
+#: build/admin.js:19
+msgid "Header color"
+msgstr "Цвет заливки заголовка"
 
-#: build/build.js:19
+#: build/admin.js:19
+msgid "Header"
+msgstr "Заголовок"
+
+#: build/admin.js:19
 msgid "Header when download started"
-msgstr "Заголовок при успешном начале скачивания"
+msgstr "Заголовок блока, когда скачивание началось"
 
-#: build/build.js:19
-msgid "Success info text"
-msgstr "Контент при успешном начале скачивания"
-
-#: build/build.js:19
-msgid ""
-"Insert any text, subsciption form, advertisments, etc. HTML and shortcodes "
-"are allowed."
-msgstr ""
-"Вставьте любой текст, форму email-подписки, объявления и т.д. HTML и "
-"шорткоды разрешены."
-
-#: build/build.js:19
-msgid "Failed header"
-msgstr "Не удалось скачать"
-
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Header when download failed"
-msgstr "Заголовок при ошибке скачивания"
+msgstr "Заголовок блока при ошибке"
 
-#: build/build.js:19
-msgid "Failed info text"
-msgstr "Контент при ошибке скачивания"
-
-#: build/build.js:19
-msgid ""
-"Maybe requested files doesn't exist anymore. Any advice or feedback form "
-"could be placed here. HTML and shortcodes are allowed."
-msgstr ""
-"Возможно, запрошенные файлы больше не существуют. Любой совет или форму "
-"обратной связи можно разместить здесь. HTML и шорткоды разрешены."
-
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Auto-wrap settings"
 msgstr "Автоматическое оборачивание ссылок"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Enable auto wrap"
 msgstr "Включить авто-вставку таймера"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid ""
 "Automatically wrap all file links in articles with corresponding file "
 "extensions"
@@ -153,15 +164,15 @@ msgstr ""
 "код с таймером. Работает на стороне пользователя, изменения в текст статей "
 "не вносятся"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Files extensions"
 msgstr "Расширения файлов"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "With class"
 msgstr "Имеет CSS класс"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid ""
 "Finds all <a> tags with selected class. Also works if <a> tag's parent has "
 "this classname. Allowed characters: [a-z], [0-9], [-]."
@@ -169,47 +180,47 @@ msgstr ""
 "Находит все <a>теги с выбранным классом. Также работает, если родительский "
 "тег у ссылки имеет это имя класса. Допустимые символы: [a-z], [0-9], [-]."
 
-#: build/build.js:19
-msgid "CSS Customizer"
-msgstr "CSS кастомизация"
+#: build/admin.js:19
+msgid "Block Customizer"
+msgstr "Внешний вид блока"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Enable shadow"
 msgstr "Включить тень"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Border radius"
 msgstr "Скругление углов"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Specify border radius in px"
 msgstr "Укажите значение радиуса скругления в пикселях"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Layout settings"
 msgstr "Конфигурация шаблона"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Layout Direction"
 msgstr "Расположение элементов"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Switch between 2 fullwidth rows or 2 columns. "
 msgstr "Переключение между 2-мя строками на всю ширину, либо 2-мя столбцами "
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Rows"
 msgstr "Строки"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Columns"
 msgstr "Столбцы"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid "Columns width"
 msgstr "Ширина столбца"
 
-#: build/build.js:19
+#: build/admin.js:19
 msgid ""
 "Relative width in %. Set left column's width, right column will be 100-"
 "[selected value]%."
@@ -217,18 +228,133 @@ msgstr ""
 "Относительная ширина в %. Задайте ширину левого столбца, правый столбец "
 "будет равен 100-[выбранное значение]%."
 
-#: build/build.js:19
-msgid "Timer Background Colors"
-msgstr "Цвет заливки таймера"
+#: build/admin.js:19
+msgid "Upgrade to Pro Now!"
+msgstr "Обновитесь до Pro прямо сейчас!"
 
-#: build/build.js:19
-msgid "Countdown"
-msgstr "При обратном отсчете"
+#: build/admin.js:19
+msgid "Premium version has some nice extra options available:"
+msgstr "В премиум версии доступны прикольные дополнительные опции:"
 
-#: build/build.js:19
-msgid "Success"
-msgstr "При успешном скачивании"
+#: build/admin.js:19
+msgid "Layout Customization"
+msgstr "Расширенные опции внешнего вида блока с таймером"
 
-#: build/build.js:19
-msgid "Failed"
-msgstr "При ошибке"
+#: build/admin.js:19
+msgid "Separate delay and new tab option for each link"
+msgstr "Индивидуальные настройки времени задержки и открытия в новой вкладке"
+
+#: build/admin.js:19
+msgid "JavaScript Permitted (Ads Support)"
+msgstr "Поддержка JavaScript тегов в контенте блоков с таймером"
+
+#: build/admin.js:19
+msgid "Priority Tech Support via Email"
+msgstr "Приоритетная тех. поддержка по почте"
+
+#: build/admin.js:19
+msgid "Check out our upgrade plans here:"
+msgstr "Узнайте об апгрейде по ссылке:"
+
+#: build/admin.js:19
+msgid "Get FDD Pro"
+msgstr "Получить FDD Pro"
+
+#: build/admin.js:19
+msgid "Pro Plan Activated"
+msgstr "Pro Версия Активирована"
+
+#: build/admin.js:19
+msgid "You can check your license status and account settings here:"
+msgstr "Проверьте статус лицензии в личном кабинете:"
+
+#: build/admin.js:19
+msgid "Account Page"
+msgstr "Личный кабинет"
+
+#: build/admin.js:19
+msgid "In trouble?"
+msgstr "Есть проблемы?"
+
+#: build/admin.js:19
+msgid "Contact Us"
+msgstr "Свяжитесь с нами"
+
+#: build/admin.js:19
+msgid "Activate Your License"
+msgstr "Активируйте вашу лицензию"
+
+#: build/admin.js:19
+msgid ""
+"You have premium version of the plugin installed but your license key is "
+"missing or expired."
+msgstr ""
+"У вас установлена премиум-версия плагина, но ваш лицензионный ключ "
+"отсутствует или срок действия истек."
+
+#: build/admin.js:19
+msgid "Go to your account page to activate the plugin:"
+msgstr "Для активации плагина перейдите в личный кабинет:"
+
+#: build/admin.js:19
+msgid ""
+"You won't be getting new plugin updates or the Priority Tech Support, but "
+"all other premium features are still available to use."
+msgstr ""
+"Вы не будете получать новые обновления плагина или приоритетную техническую "
+"поддержку, но все остальные премиум-функции по-прежнему доступны для "
+"использования."
+
+#: build/admin.js:19
+msgid "You can renew your license key here:"
+msgstr "Вы можете продлить или обновить лицензию тут:"
+
+#: build/admin.js:19
+msgid "Upgrade page"
+msgstr "Обновить лицензию"
+
+#: build/admin.js:19
+msgid "Have any questions?"
+msgstr "Возникли вопросы?"
+
+#: build/block.js:19
+msgid "Download Delay Options"
+msgstr "Скачивание с задержкой"
+
+#: build/block.js:19
+msgid "Enable Download Delay"
+msgstr "Включить задержку"
+
+#: build/block.js:19
+msgid "Show countdown."
+msgstr "Показать таймер."
+
+#: build/block.js:19
+msgid "Download normally."
+msgstr "Обычное скачивание."
+
+#: build/block.js:19
+msgid "Delay Time in Seconds"
+msgstr "Задержка в секундах"
+
+#: build/block.js:19
+msgid ""
+"You can adjust time delay or select whether to open the link in new tab "
+"individually in"
+msgstr ""
+"Вы можете настроить задержку и открытие в новой вкладке индивидуально в"
+
+#, fuzzy
+#~| msgid "Account Page"
+#~ msgid "Account page"
+#~ msgstr "Личный кабинет"
+
+#~ msgid "License Expired"
+#~ msgstr "Срок действия лицензии истек"
+
+#~ msgid ""
+#~ "All premium features are available to use, except for Priority Tech "
+#~ "Support and plugin updates."
+#~ msgstr ""
+#~ "Все премиум-функции доступны для использования, за исключением "
+#~ "приоритетной технической поддержки и обновлений плагинов."

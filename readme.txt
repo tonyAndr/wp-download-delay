@@ -7,13 +7,13 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-When user tries to download a file, plugin adds countdown timer with customizible layout.
+When user tries to download a file, plugin adds countdown timer with the customizible layout.
 
 == Description ==
 
 Files Download Delay plugin wraps file download links with customizible layout which allows you to show any kind of content. For example, while users are waiting for download, you can show them email subscription form, feedback form, related content or even ads. 
 
-Download links can be wrapped automatically based on conditions (file extension, element class) or manually using the shortcode `[ddwrap]<a href="path/to/file.pdf">Download</a>[/ddwrap]`.
+Download links can be wrapped automatically based on conditions (file extension, element class) or manually using the shortcode `[fddwrap]<a href="path/to/file.pdf">Download</a>[/fddwrap]`.
 
 Features which you can easily customize:
 * delay time in seconds before download happens,
@@ -42,12 +42,14 @@ If your download links don't have file extensions (ex: domain.com/files/download
 
 == Screenshots ==
 
-Screenshots will be added later...
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Screenshots are stored in the /assets directory.
-2. This is the second screen shot
+1. The countdown when user is trying to download a file
+2. Extended configuration options of the "File" block in the editor
+3. Auto-wrap options on the plugins settings page
 
 == Changelog ==
 
+= 1.0.1 =
+* Little fixes
+
 = 1.0 =
-* Release.
+* Release

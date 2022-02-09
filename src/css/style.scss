@@ -37,31 +37,67 @@
 		max-width: 750px;
 	}
 
-	.codeinwp-header {
+	.fdd-header {
 		padding: 20px 10px;
 		background-color: #ffffff;
-		box-shadow: 0 1px 0 rgba(213,213,213,0.5),0 1px 2px #eee;
 
-		.codeinwp-container {
+		.fdd-container {
 			margin: 0 auto;
 			max-width: 750px;
 
-			.codeinwp-logo {
+			.fdd-logo {
 				display: flex;
 				align-items: center;
 				justify-content: center;
 			}
-            .codeinwp-logo img {
+            .fdd-logo img {
                 width: 48px;
                 margin-right: 10px;
             }
 		}
 	}
 
-	.codeinwp-main {
-		margin-left: auto;
-		margin-right: auto;
-		max-width: 750px;
+    .fdd-content-flex {
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        align-items: flex-start;
+
+    }
+
+    .fdd-sidebar {
+        max-width: 250px;
+
+        .components-panel__body {
+			margin: 25px 0;
+			background: #fff;
+			border: 1px solid #e2e4e7;
+
+            &.free-version {
+                background: #ffe0a8;
+            }
+            &.pro-version {
+                background: #d6ffa8;
+            }
+            &.expired-version {
+                background: #ffaca8;
+            }
+
+			.components-panel__body-toggle {
+				border-bottom: 1px solid #d6e2ed;
+			}
+
+			.components-panel__row {
+				padding: 10px;
+				margin: 0;
+            }
+        }
+    }
+
+	.fdd-main {
+		// margin-left: auto;
+		// margin-right: auto;
+		max-width: 650px;
 
         hr {
             border-top: 0;
@@ -82,7 +118,7 @@
 				margin: 0;
 
                 // &.border-normal {
-                //     border-left: 3px solid #4397ff;
+                //     border-left: 3px solid #4397cc;
                 // }
                 // &.border-success {
                 //     border-left: 3px solid #39b400;
@@ -90,7 +126,12 @@
                 // &.border-failed {
                 //     border-left: 3px solid #ff4625;
                 // }
-
+                .components-form-token-field {
+                    label {
+                        font-weight: 600;
+                        margin-bottom: 10px;
+                    }
+                }
 				.components-base-control {
 					.components-base-control__field {
 						display: flex;
@@ -117,7 +158,7 @@
 								width: 100%;
 								box-shadow: none;
 								height: 40px;
-								margin: 0 0 10px 0;
+								margin: 0 0 0 0;
 								color: #444;
 
 								&:disabled {
@@ -149,10 +190,19 @@
 						}
 					}
 				}
+
+                .components-circular-option-picker .components-circular-option-picker__custom-clear-wrapper {
+                    justify-content: flex-start;
+                    margin-left: 10px;
+
+                    button {
+                        background: white;
+                    }
+                }
 			}
 		}
 
-		.codeinwp-info {
+		.fdd-info {
 			padding: 0 10px 10px;
 
 			h2 {
@@ -192,6 +242,21 @@
                     .components-color-picker {
                         width:100%;
                     }
+        }
+    }
+
+
+    .tab-panel-texts {
+        .tabs-active {
+            box-shadow: inset 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
+            background: white;
+        }
+        button {
+            background: #e2e4e7;
+
+            &:focus {
+                background: white;
+            }
         }
     }
 }

@@ -1,23 +1,25 @@
 <?php
 
-class Download_Delay_Front
+class Download_Delay_Post
 {
-    public $version = 0;
-    public function loader($version) {
-        $this->version = $version;
+    private $assets;
+    private $plugin_dir_path;
+    public function __construct () {
+        $this->plugin_dir_path = plugin_dir_path( __FILE__ );
+        $this->assets = include($this->plugin_dir_path . "build/post.asset.php");
 
         add_action ( 'wp_head', array($this, 'send_options_frontend') );
-        add_action( 'wp_enqueue_scripts', array($this, 'dloaddelay_scripts') );
-        add_shortcode( 'ddwrap', array($this,'dd_shortcode') );
+        add_action( 'wp_enqueue_scripts', array($this, 'dloaddelay_scripts'), 9999 );
+        add_shortcode( 'fddwrap', array($this,'fdd_shortcode') );
     }
     // Load css and front-end js
 
     public function dloaddelay_scripts() {
-        wp_register_style( 'dloaddelay-style', plugins_url( '/css/post-template.css', __FILE__ ), '', $this->version );
+        wp_register_style( 'dloaddelay-style', plugins_url( '/build/post.css', __FILE__ ), '', $this->assets['version'] );
         wp_enqueue_style ('dloaddelay-style');
         $this->add_customized_styles('dloaddelay-style');
 
-        wp_register_script( 'dloaddelay-script', plugins_url( '/js/post.js', __FILE__ ), array( 'jquery' ), $this->version );
+        wp_register_script( 'dloaddelay-script', plugins_url( '/build/post.js', __FILE__ ), array( 'jquery' ), $this->assets['version'] );
         wp_enqueue_script( 'dloaddelay-script' );
     }
 
@@ -119,7 +121,7 @@ class Download_Delay_Front
         return $template;
     }
 
-    public function dd_shortcode($atts , $content = null, $shortcode_tag) {
+    public function fdd_shortcode($atts , $content = null, $shortcode_tag) {
         $a = shortcode_atts( array(
             'delay_time' => get_option('dload_delay_time'),
         ), $atts );

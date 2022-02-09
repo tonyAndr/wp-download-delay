@@ -1,0 +1,37 @@
+/******/
+
+// $('#'+timer_container_id).fadeOut();
+
+// $('#'+timer_container_id).remove();
+
+// check by className element and parents
+
+// check by file extension and pre-wrap using shortcode
+
+// check if wrapped already 
+
+// console.log(ext);
+
+// create custom unique link to download page using random id
+
+// exists code 
+
+// generate smth unique
+
+// generate url id
+
+// get from global options
+
+// keep track of delayed downloads
+
+// location.href=url;
+
+// not exists code
+
+// open download page in new tab
+
+// replace {download_link} tag
+
+// save download url and current page url to localstorage
+
+// save it to check if this link already is waiting for redirect

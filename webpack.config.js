@@ -1,16 +1,28 @@
 const webpack = require( 'webpack' );
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
+const HookShellScriptPlugin = require('hook-shell-script-webpack-plugin');
+const datejs = require('dayjs');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+
+const current_date = datejs().format('DD-MM-YY-HHmmss');
+
 
 module.exports = {
 	mode: NODE_ENV,
-    entry: './src/index.js',
+    entry: {
+        admin: './src/js/admin.js',
+        post: './src/js/post.js',
+        redirect: './src/js/redirect.js',
+        block: './src/js/block.js'
+    },
     resolve: {
         extensions: ['.js']
     },
 	output: {
-		path: __dirname,
-		filename: './build/build.js'
+		path: __dirname + '/build',
+		filename: '[name].js'
 	},
 	module: {
 		rules: [
@@ -28,7 +40,9 @@ module.exports = {
 									'pragma': 'wp.element.createElement'
 								}
 							]
-						]
+						],
+                        // comments: true,
+                        // minified: false
 					}
 				}],
 				exclude: /node_modules/
@@ -58,7 +72,25 @@ module.exports = {
 			'process.env.NODE_ENV': JSON.stringify( NODE_ENV )
 		}),
 		new MiniCssExtractPlugin({
-			filename: './build/build.css'
-		})
-	]
+			filename: '[name].css'
+		}),
+        new DependencyExtractionWebpackPlugin(),
+        // IF DEV -> update .pot file ELSE -> create zip for freemius
+        new HookShellScriptPlugin({
+            done: NODE_ENV === 'development' ? [
+                'wp i18n make-pot . ./languages/dload-delay-td.pot --exclude="src,.vscode,freemius" & wp i18n make-json ./languages --no-purge'
+            ] : [`"c:/program files/7-zip/7z.exe" a -tzip "c:/dev/freemius_deploy/files-download-delay-${current_date}.zip" * -x!.git* -x!.vscode -x!node_modules -x!package* -x!webpack* -x!*.md`]
+            // ...
+          })
+	],
+    optimization: {
+        minimizer: [
+          // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+        //   `...`,
+          new CssMinimizerPlugin(),
+        ],
+      },
+    // externals: {
+    //     '@wordpress/i18n': { this: [ 'wp', 'i18n' ] }
+    // }
 };

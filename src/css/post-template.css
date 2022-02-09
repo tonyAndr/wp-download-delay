@@ -1,13 +1,18 @@
 .dload-timer-wrap {
+    padding: 10px;
+    margin: 0;
+    /* width: 100%; */
+}
+
+.dload-timer-wrap p {
     padding: 0;
     margin: 0;
-    width: 100%;
 }
 
 .dload-timer-container {
     text-align: center;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     width: 100%;
     background: #ffffff;
     position: relative;
@@ -35,6 +40,9 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+.dload-timer-container .timer-container.font-black {
+    color: black;
+}
 .dload-timer-container .info-container {
     flex-grow: 2;
     padding: 10px;
@@ -45,6 +53,15 @@
     display: inline-block;
 }
 
+.dload-timer-container .info-container p {
+    padding: 0;
+    margin: 0 0 10px 0;
+    overflow-wrap: anywhere;
+}
+.dload-timer-info p {
+    padding: 0;
+    margin: 0;
+}
 /* Timer animation */
 
 .dload-timer-cd {
@@ -54,6 +71,7 @@
     height: 48px;
     text-align: center;
     line-height: 44px;
+    margin-left: 10px;
 }
 .dload-timer-cd:after {
     position: absolute;
@@ -65,10 +83,16 @@
     height: 48px;
     margin: 0 auto;
     border-radius: 50%;
-    border: 6px solid #fff;
-    border-color: #fff transparent #fff transparent;
-    animation: lds-dual-ring 1.2s linear infinite;
+    /* border: 6px solid #fff; */
+    /* border-color: #fff transparent #fff transparent; */
+    animation: lds-dual-ring 2s linear infinite;
+    box-shadow: 0px 1px 1px 1px white;
 }
+
+.font-black .dload-timer-cd:after {
+    box-shadow: 0px 1px 1px 1px black;
+}
+
 @keyframes lds-dual-ring {
     0% {
         transform: rotate(0deg);

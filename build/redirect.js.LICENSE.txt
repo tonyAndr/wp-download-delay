@@ -1,0 +1,15 @@
+/**
+ * Get HTML template from options
+ */
+
+/**
+ * Get url, return_url, time from browser localStorage
+ */
+
+/**
+ * Run the timer and display result
+ */
+
+/******/
+
+// using fetch to verify that file exists
