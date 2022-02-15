@@ -3,7 +3,7 @@
 /**
  * WordPress dependencies
  */
-const { __, sprintf } = wp.i18n;
+const { __ } = wp.i18n;
 
 const {
     BaseControl,
@@ -34,11 +34,6 @@ const {
     Fragment
 } = wp.element;
 
-const colors = [
-    { name: 'red', color: '#f00' },
-    { name: 'white', color: '#fff' },
-    { name: 'blue', color: '#00f' },
-];
 
 /**
  * Internal dependencies
@@ -124,11 +119,7 @@ class App extends Component {
 
 
         model.save().then(response => {
-            // console.log('saved', response)
             this.setState({
-                // dload_delay_extensions: response["dload_delay_extensions"],
-                // dload_delay_time: response["dload_delay_time"],
-                // dload_delay_template: response["dload_delay_template"],
                 isAPISaving: false
             });
         });
@@ -169,7 +160,6 @@ class App extends Component {
 
         return (
             <Fragment>
-
                 <Flex className="fdd-content-flex">
                     <FlexItem>                
                         <div className="fdd-main">
@@ -178,7 +168,7 @@ class App extends Component {
                                     <div className="fdd-header">
                                         <div className="fdd-container">
                                             <div className="fdd-logo">
-                                                <img src="/wp-content/plugins/files-download-delay/img/icon-256x256.png" />
+                                                <img src={dd_admin_vars.plugins_url + 'img/icon-256x256.png'} />
                                                 <h1>{__('Files Download Delay', 'dload-delay-td')}</h1>
                                             </div>
                                         </div>
@@ -494,8 +484,8 @@ class App extends Component {
                                                     onChange={ value => this.setState({ dload_delay_layout: value }) } 
                                                     checked={ this.state.dload_delay_layout }
                                                     help={__('Switch between 2 fullwidth rows or 2 columns. ', 'dload-delay-td')}>
-                                                    <Radio value="column">{__('Rows', 'dload-delay-td')}<img className='fdd-layout-icon' src='/wp-content/plugins/files-download-delay/img/row.svg' /></Radio>
-                                                    <Radio value="row">{__('Columns', 'dload-delay-td')}<img className='fdd-layout-icon' src='/wp-content/plugins/files-download-delay/img/column.svg' /></Radio>
+                                                    <Radio value="column">{__('Rows', 'dload-delay-td')}<img className='fdd-layout-icon' src={dd_admin_vars.plugins_url + 'img/row.svg'} /></Radio>
+                                                    <Radio value="row">{__('Columns', 'dload-delay-td')}<img className='fdd-layout-icon' src={dd_admin_vars.plugins_url + 'img/column.svg'} /></Radio>
                                                 </RadioGroup>
                                             </FlexBlock>
                                             <FlexBlock>

@@ -28,9 +28,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 /**
  * WordPress dependencies
  */
-var _wp$i18n = wp.i18n,
-    __ = _wp$i18n.__,
-    sprintf = _wp$i18n.sprintf;
+var __ = wp.i18n.__;
 var _wp$components = wp.components,
     BaseControl = _wp$components.BaseControl,
     Button = _wp$components.Button,
@@ -56,16 +54,6 @@ var _wp$element = wp.element,
     render = _wp$element.render,
     Component = _wp$element.Component,
     Fragment = _wp$element.Fragment;
-var colors = [{
-  name: 'red',
-  color: '#f00'
-}, {
-  name: 'white',
-  color: '#fff'
-}, {
-  name: 'blue',
-  color: '#00f'
-}];
 /**
  * Internal dependencies
  */
@@ -164,11 +152,7 @@ var App = /*#__PURE__*/function (_Component) {
       });
       var model = new wp.api.models.Settings(this.state);
       model.save().then(function (response) {
-        // console.log('saved', response)
         _this3.setState({
-          // dload_delay_extensions: response["dload_delay_extensions"],
-          // dload_delay_time: response["dload_delay_time"],
-          // dload_delay_template: response["dload_delay_template"],
           isAPISaving: false
         });
       });
@@ -225,7 +209,7 @@ var App = /*#__PURE__*/function (_Component) {
       }, wp.element.createElement("div", {
         className: "fdd-logo"
       }, wp.element.createElement("img", {
-        src: "/wp-content/plugins/files-download-delay/img/icon-256x256.png"
+        src: dd_admin_vars.plugins_url + 'img/icon-256x256.png'
       }), wp.element.createElement("h1", null, __('Files Download Delay', 'dload-delay-td')))))), wp.element.createElement(PanelRow, null, wp.element.createElement(Button, {
         isSecondary: true,
         disabled: this.state.isAPISaving,
@@ -505,12 +489,12 @@ var App = /*#__PURE__*/function (_Component) {
         value: "column"
       }, __('Rows', 'dload-delay-td'), wp.element.createElement("img", {
         className: "fdd-layout-icon",
-        src: "/wp-content/plugins/files-download-delay/img/row.svg"
+        src: dd_admin_vars.plugins_url + 'img/row.svg'
       })), wp.element.createElement(Radio, {
         value: "row"
       }, __('Columns', 'dload-delay-td'), wp.element.createElement("img", {
         className: "fdd-layout-icon",
-        src: "/wp-content/plugins/files-download-delay/img/column.svg"
+        src: dd_admin_vars.plugins_url + 'img/column.svg'
       })))), wp.element.createElement(FlexBlock, null, wp.element.createElement(RangeControl, {
         label: __('Columns width', 'dload-delay-td'),
         help: __('Relative width in %. Set left column\'s width, right column will be 100-[selected value]%.', 'dload-delay-td'),

@@ -1,13 +1,15 @@
 <?php
 /*
  * Plugin Name: Files Download Delay
+ * Plugin URI: https://fdd.tonyandr.com
  * Description: Wraps your download links with countdown timer and allows you to add the custom text, html or shortcode to output subscription form, ads, related content, share buttons, etc. 
- * Version: 1.0.1
- * Author: SeoCherry.ru
- * Author URI: https://seocherry.ru/
- * Requires at least: 5.9
+ * Version: 1.0.3
+ * Author: tonyandr.com
+ * Author URI: https://fdd.tonyandr.com/
+ * Requires at least: 5.5
  * Requires PHP:      7.2
  * Text Domain: dload-delay-td
+ * Domain Path: /languages/
  * License: GPLv2 or later
 */
 

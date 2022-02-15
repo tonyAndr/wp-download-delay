@@ -79,7 +79,7 @@ module.exports = {
         new HookShellScriptPlugin({
             done: NODE_ENV === 'development' ? [
                 'wp i18n make-pot . ./languages/dload-delay-td.pot --exclude="src,.vscode,freemius" & wp i18n make-json ./languages --no-purge'
-            ] : [`"c:/program files/7-zip/7z.exe" a -tzip "c:/dev/freemius_deploy/files-download-delay-${current_date}.zip" * -x!.git* -x!.vscode -x!node_modules -x!package* -x!webpack* -x!*.md`]
+            ] : [`"c:/program files/7-zip/7z.exe" a -tzip "c:/dev/freemius_deploy/files-download-delay-${current_date}.zip" * -x!.git* -x!.vscode -x!node_modules -x!package* -x!webpack* -x!*.md -x!src`]
             // ...
           })
 	],

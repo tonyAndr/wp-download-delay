@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Files Download Delay 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/files-download-"
 "delay\n"
-"POT-Creation-Date: 2022-02-09T12:21:34+00:00\n"
-"PO-Revision-Date: 2022-02-09 13:22+0100\n"
+"POT-Creation-Date: 2022-02-10T09:28:39+00:00\n"
+"PO-Revision-Date: 2022-02-10 10:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -23,27 +23,26 @@ msgstr ""
 msgid "Files Download Delay"
 msgstr ""
 
+#. Plugin URI of the plugin
+msgid "https://fdd.tonyandr.com"
+msgstr ""
+
 #. Description of the plugin
-#, fuzzy
-#| msgid ""
-#| "Wraps your download links with countdown timer and allows you to add "
-#| "custom text, html or shortcode to output subscription form, ads, related "
-#| "content, share buttons, etc."
 msgid ""
 "Wraps your download links with countdown timer and allows you to add the "
 "custom text, html or shortcode to output subscription form, ads, related "
 "content, share buttons, etc."
 msgstr ""
-"Создает таймер обратного отсчета при скачивании файла и позволяет добавить "
-"любой текст, html или шорткод для вывода формы email-подписки, блоков "
-"рекламы, связанного контента, кнопок «Поделиться» и т. д."
+"Создает таймер обратного отсчета при скачивании файла и показывает "
+"пользователю любой текст, html или шорткод для вывода блоков рекламы, форм "
+"обратной связи, похожего контента, кнопок «Поделиться» и т. д."
 
 #. Author of the plugin
-msgid "SeoCherry.ru"
+msgid "tonyandr.com"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://seocherry.ru/"
+msgid "https://tonyandr.com/"
 msgstr ""
 
 #: admin.php:197

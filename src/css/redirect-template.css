@@ -11,10 +11,12 @@ body {
 }
 
 .dload-timer-container {
+    overflow: hidden; 
     text-align: center;
     display: flex;
     flex-flow: column wrap;
-    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
     background: #ffffff;
     box-shadow: 1px 1px 4px 1px #98989891;
 }
@@ -37,8 +39,11 @@ body {
     justify-content: center;
     flex-wrap: wrap;
 }
+.dload-timer-container .timer-container.font-black {
+    color: black;
+}
 .dload-timer-container .info-container {
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,9 +51,14 @@ body {
     flex-wrap: wrap;
     overflow: hidden; 
     margin: 0 auto;
-    max-width: 800px;
+    width: 100%;
 }
+.dload-timer-container .info-container img {
+    box-sizing: border-box;
+    width:100%;
+    height: auto;
 
+}
 .dload-timer-info {
     font-size: 16px;
     display: inline-block;
@@ -73,19 +83,33 @@ body {
     left: 0;
     content: " ";
     display: inline-block;
-    width: 70px;
-    height: 70px;
+    width: 82px;
+    height: 82px;
     margin: 0 auto;
     border-radius: 50%;
-    border: 6px solid #fff;
-    border-color: #fff transparent #fff transparent;
+    /* border: 6px solid #fff; */
+    /* border-color: #fff transparent #fff transparent; */
     animation: lds-dual-ring 2.0s linear infinite;
+    box-shadow: 0px 1px 1px 1px white;
 }
+.font-black .dload-timer-cd:after {
+    box-shadow: 0px 1px 1px 1px black;
+}
+
 @keyframes lds-dual-ring {
     0% {
         transform: rotate(0deg);
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    .dload-timer-container {
+        /* width: 100%; */
+        margin: 0 auto;
+        box-shadow: none;
     }
 }

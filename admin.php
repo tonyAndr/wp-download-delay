@@ -236,6 +236,7 @@ class Download_Delay_Admin
                 'free_version' => json_encode( !fdd_fs()->is_premium()),
                 'upgrade_url' => fdd_fs()->get_upgrade_url(),
                 'is_paying' => json_encode( fdd_fs()->is_paying()),
+                'plugins_url' => plugins_url( '/', __FILE__ ),
                 'freemium' => $freemium_vars
             ) );
             wp_enqueue_style( 'seocherry-dload-delay-style', plugins_url( '/', __FILE__ ) . 'build/admin.css', array( 'wp-components' ) );
