@@ -1005,7 +1005,12 @@ if (font_black) {
 
 
 var countdown = setInterval(function () {
-  time--;
+  var tab_active = document.visibilityState === "visible";
+
+  if (tab_active) {
+    time--;
+  }
+
   timer_element.innerHTML = time;
 
   if (time == 0) {

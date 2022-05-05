@@ -138,7 +138,11 @@ jQuery(document).ready(function($) {
 		$('#'+timer_container_id).fadeIn();
         document.querySelector('#'+timer_container_id).scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
 		var timers = setInterval(function () {
-			time--; 
+            let tab_active = document.visibilityState === "visible";
+            if (tab_active) {
+                time--; 
+            }
+
 			$('#'+timer_container_id).find('.dload-timer-cd').html(time);
 			if (time == 0) {
 				// $('#'+timer_container_id).fadeOut();

@@ -256,6 +256,9 @@ class Download_Delay_Admin
 
     // restore defaults 
     public function restore_defaults() {
+
+        check_admin_referer('dd_security', '_ajax_nonce');
+        
         $defaults = $this->def_val();
 
         foreach($defaults as $k => $v) {

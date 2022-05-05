@@ -37,8 +37,11 @@ if (font_black) {
  */
 let countdown = setInterval(function () {
 
+    let tab_active = document.visibilityState === "visible";
+    if (tab_active) {
+        time--; 
+    }
 
-    time--; 
     timer_element.innerHTML = time;
     if (time == 0) {
         clearInterval(countdown);

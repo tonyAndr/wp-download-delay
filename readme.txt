@@ -48,6 +48,13 @@ If your download links don't have file extensions (ex: domain.com/files/download
 
 == Changelog ==
 
+= 1.0.5 = 
+* Vulnerability fixes
+ 
+= 1.0.4 =
+* Countdown timer will be paused if the tab is not active
+* Security fixes
+
 = 1.0.3 =
 * Little Fixes
 

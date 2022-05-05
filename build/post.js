@@ -1108,7 +1108,12 @@ jQuery(document).ready(function ($) {
       inline: "center"
     });
     var timers = setInterval(function () {
-      time--;
+      var tab_active = document.visibilityState === "visible";
+
+      if (tab_active) {
+        time--;
+      }
+
       $('#' + timer_container_id).find('.dload-timer-cd').html(time);
 
       if (time == 0) {
