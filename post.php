@@ -1,26 +1,36 @@
 <?php
 
-class Download_Delay_Post
+class DownloadDelayPost
 {
     private $assets;
     private $plugin_dir_path;
     public function __construct () {
-        $this->plugin_dir_path = plugin_dir_path( __FILE__ );
+        $this->plugin_dir_path = plugin_dir_path(__FILE__);
         $this->assets = include($this->plugin_dir_path . "build/post.asset.php");
 
-        add_action ( 'wp_head', array($this, 'send_options_frontend') );
-        add_action( 'wp_enqueue_scripts', array($this, 'dloaddelay_scripts'), 9999 );
-        add_shortcode( 'fddwrap', array($this,'fdd_shortcode') );
+        add_action('wp_head', array($this, 'send_options_frontend'));
+        add_action('wp_enqueue_scripts', array($this, 'dloaddelay_scripts'), 9999);
+        add_shortcode('fddwrap', array($this,'fdd_shortcode'));
     }
     // Load css and front-end js
 
     public function dloaddelay_scripts() {
-        wp_register_style( 'dloaddelay-style', plugins_url( '/build/post.css', __FILE__ ), '', $this->assets['version'] );
-        wp_enqueue_style ('dloaddelay-style');
+        wp_register_style(
+            'dloaddelay-style',
+            plugins_url('/build/post.css', __FILE__),
+            '',
+            $this->assets['version']
+        );
+        wp_enqueue_style('dloaddelay-style');
         $this->add_customized_styles('dloaddelay-style');
 
-        wp_register_script( 'dloaddelay-script', plugins_url( '/build/post.js', __FILE__ ), array( 'jquery' ), $this->assets['version'] );
-        wp_enqueue_script( 'dloaddelay-script' );
+        wp_register_script(
+            'dloaddelay-script',
+            plugins_url('/build/post.js', __FILE__),
+            array( 'jquery' ),
+            $this->assets['version']
+        );
+        wp_enqueue_script('dloaddelay-script');
     }
 
     public function add_customized_styles($style_name = false) {
@@ -37,8 +47,9 @@ class Download_Delay_Post
         .dload-timer-container .bgcolor_success {background: ".$success_bg.";}
         .dload-timer-container .bgcolor_failed {background: ".$failed_bg.";}
         ";
-        if (!$style_name) return $custom_styles; // return value if called from redirect-page
-        
+        if (!$style_name) {
+            return $custom_styles; // return value if called from redirect-page
+        }
         if ($layout === 'row') {
             $custom_styles .= "
 
@@ -109,19 +120,17 @@ class Download_Delay_Post
 
     public function read_html_template($modifier) {
         $template = file_get_contents('template.html', FILE_USE_INCLUDE_PATH);
-        $info_text = get_option('dload_delay'.$modifier.'_info_text');
-        $cd_text = get_option('dload_delay'.$modifier.'_cd_text');
-        if ( fdd_fs()->is__premium_only() ) {
-            $info_text = do_shortcode($info_text);
-            $cd_text = do_shortcode($cd_text);
-        }
+        $info_text = json_decode(get_option('dload_delay'.$modifier.'_info_text'));
+        $cd_text = json_decode(get_option('dload_delay'.$modifier.'_cd_text'));
+        $info_text = do_shortcode($info_text);
+        $cd_text = do_shortcode($cd_text);
         $template = str_replace("[cd-text]", $cd_text, $template);
         $template = str_replace("[info-text]", $info_text, $template);
         $template = str_replace("[bg-modifier]", $modifier, $template);
         return $template;
     }
 
-    public function fdd_shortcode($atts , $content = null, $shortcode_tag) {
+    public function fdd_shortcode($atts , $content = null) {
         $a = shortcode_atts( array(
             'delay_time' => get_option('dload_delay_time'),
         ), $atts );

@@ -73,6 +73,7 @@ var App = /*#__PURE__*/function (_Component) {
     _this = _super.apply(this, arguments);
     _this.changeOptions = _this.changeOptions.bind(_assertThisInitialized(_this));
     _this.parseOptions = _this.parseOptions.bind(_assertThisInitialized(_this));
+    _this.loadOptions = _this.loadOptions.bind(_assertThisInitialized(_this));
     _this.validateDownloadClassName = _this.validateDownloadClassName.bind(_assertThisInitialized(_this));
     _this.state = {
       isAPILoaded: false,
@@ -102,6 +103,11 @@ var App = /*#__PURE__*/function (_Component) {
   _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.loadOptions();
+    }
+  }, {
+    key: "loadOptions",
+    value: function loadOptions() {
       var _this2 = this;
 
       wp.api.loadPromise.then(function () {
@@ -121,12 +127,12 @@ var App = /*#__PURE__*/function (_Component) {
       // console.log(response)
       this.setState({
         dload_delay_time: parseInt(response.dload_delay_time),
-        dload_delay_cd_text: response.dload_delay_cd_text,
-        dload_delay_info_text: response.dload_delay_info_text,
-        dload_delay_success_cd_text: response.dload_delay_success_cd_text,
-        dload_delay_success_info_text: response.dload_delay_success_info_text,
-        dload_delay_failed_cd_text: response.dload_delay_failed_cd_text,
-        dload_delay_failed_info_text: response.dload_delay_failed_info_text,
+        dload_delay_cd_text: JSON.parse(response.dload_delay_cd_text),
+        dload_delay_info_text: JSON.parse(response.dload_delay_info_text),
+        dload_delay_success_cd_text: JSON.parse(response.dload_delay_success_cd_text),
+        dload_delay_success_info_text: JSON.parse(response.dload_delay_success_info_text),
+        dload_delay_failed_cd_text: JSON.parse(response.dload_delay_failed_cd_text),
+        dload_delay_failed_info_text: JSON.parse(response.dload_delay_failed_info_text),
         dload_delay_extensions: response.dload_delay_extensions,
         dload_delay_autowrap: response.dload_delay_autowrap,
         dload_delay_enable_redirect: response.dload_delay_enable_redirect,
@@ -163,13 +169,15 @@ var App = /*#__PURE__*/function (_Component) {
       var _this4 = this;
 
       this.setState({
-        isAPISaving: true
+        isAPISaving: true,
+        isAPILoaded: false
       });
       fetch(dd_admin_vars.ajax_url + '?action=ddlay_restore_defaults' + '&_ajax_nonce=' + dd_admin_vars.dd_security).then(function (res) {
         return res.json();
       }).then(function (res) {
-        // console.log(res);
-        _this4.parseOptions(res);
+        console.log(res);
+
+        _this4.loadOptions();
       });
     }
   }, {
@@ -288,7 +296,7 @@ var App = /*#__PURE__*/function (_Component) {
           }, wp.element.createElement(BaseControl, {
             label: __('Body', 'dload-delay-td') // help={__('Insert any text, subsciption form, advertisments, etc. HTML and shortcodes are allowed.', 'dload-delay-td')}
             ,
-            help: dd_admin_vars.free_version === 'true' ? allowedContentFree : allowedContentPro,
+            help: allowedContentPro,
             id: "fdd-input-cd-info",
             className: "codeinwp-text-field"
           }, wp.element.createElement(TextareaControl, {
@@ -340,7 +348,7 @@ var App = /*#__PURE__*/function (_Component) {
             className: "border-success"
           }, wp.element.createElement(BaseControl, {
             label: __('Body', 'dload-delay-td'),
-            help: dd_admin_vars.free_version === 'true' ? allowedContentFree : allowedContentPro,
+            help: allowedContentPro,
             id: "fdd-input-success-info",
             className: "codeinwp-text-field"
           }, wp.element.createElement(TextareaControl, {
@@ -391,7 +399,7 @@ var App = /*#__PURE__*/function (_Component) {
             className: "border-failed"
           }, wp.element.createElement(BaseControl, {
             label: __('Body', 'dload-delay-td'),
-            help: dd_admin_vars.free_version === 'true' ? allowedContentFree : allowedContentPro,
+            help: allowedContentPro,
             id: "fdd-input-failed-info",
             className: "codeinwp-text-field"
           }, wp.element.createElement(TextareaControl, {
@@ -450,7 +458,7 @@ var App = /*#__PURE__*/function (_Component) {
         onChange: function onChange(value) {
           return _this5.validateDownloadClassName(value);
         }
-      })))), dd_admin_vars.free_version !== 'true' && wp.element.createElement(PanelBody, null, wp.element.createElement("h2", null, __('Block Customizer', 'dload-delay-td')), !this.state.dload_delay_enable_redirect && wp.element.createElement(React.Fragment, null, wp.element.createElement(PanelRow, null, wp.element.createElement(ToggleControl, {
+      })))), wp.element.createElement(PanelBody, null, wp.element.createElement("h2", null, __('Block Customizer', 'dload-delay-td')), !this.state.dload_delay_enable_redirect && wp.element.createElement(React.Fragment, null, wp.element.createElement(PanelRow, null, wp.element.createElement(ToggleControl, {
         label: __('Enable shadow', 'dload-delay-td'),
         checked: Boolean(this.state.dload_delay_drop_shadow),
         disabled: this.state.isAPISaving,
@@ -522,25 +530,23 @@ var App = /*#__PURE__*/function (_Component) {
         }
       }, __('Save', 'dload-delay-td')))))), wp.element.createElement(FlexItem, null, wp.element.createElement("div", {
         className: "fdd-sidebar"
-      }, dd_admin_vars.free_version === 'true' && wp.element.createElement(PanelBody, {
-        className: "free-version"
-      }, wp.element.createElement("h2", null, "\uD83D\uDC8E ", __('Upgrade to Pro Now!', 'dload-delay-td')), wp.element.createElement("p", null, __('Premium version has some nice extra options available:', 'dload-delay-td'), " "), wp.element.createElement("ol", null, wp.element.createElement("li", null, __('Layout Customization', 'dload-delay-td')), wp.element.createElement("li", null, __('Separate delay and new tab option for each link', 'dload-delay-td')), wp.element.createElement("li", null, __('JavaScript Permitted (Ads Support)', 'dload-delay-td')), wp.element.createElement("li", null, __('Priority Tech Support via Email', 'dload-delay-td'))), wp.element.createElement("p", null, __('Check out our upgrade plans here:', 'dload-delay-td'), " ", wp.element.createElement("a", {
-        href: dd_admin_vars.upgrade_url
-      }, __('Get FDD Pro', 'dload-delay-td')), ".")), dd_admin_vars.free_version === 'false' && dd_admin_vars.is_paying === 'true' && wp.element.createElement(PanelBody, {
+      }, wp.element.createElement(PanelBody, {
         className: "pro-version"
-      }, wp.element.createElement("h2", null, "\uD83D\uDE03 ", __('Pro Plan Activated', 'dload-delay-td')), wp.element.createElement("p", null, __('You can check your license status and account settings here:', 'dload-delay-td'), " ", wp.element.createElement("a", {
-        href: dd_admin_vars.freemium.account_url
-      }, __('Account Page', 'dload-delay-td'))), wp.element.createElement("p", null, __('In trouble?', 'dload-delay-td'), " ", wp.element.createElement("a", {
-        href: dd_admin_vars.freemium.contact_url
-      }, __('Contact Us', 'dload-delay-td')))), dd_admin_vars.free_version === 'false' && dd_admin_vars.is_paying === 'false' && wp.element.createElement(PanelBody, {
-        className: "expired-version"
-      }, wp.element.createElement("h2", null, "\uD83D\uDE1F ", __('Activate Your License', 'dload-delay-td')), wp.element.createElement("p", null, __('You have premium version of the plugin installed but your license key is missing or expired.', 'dload-delay-td')), wp.element.createElement("p", null, __('Go to your account page to activate the plugin:', 'dload-delay-td'), " ", wp.element.createElement("a", {
-        href: dd_admin_vars.freemium.account_url
-      }, __('Account Page', 'dload-delay-td')), "."), wp.element.createElement("p", null, __('You won\'t be getting new plugin updates or the Priority Tech Support, but all other premium features are still available to use.', 'dload-delay-td')), wp.element.createElement("p", null, __('You can renew your license key here:', 'dload-delay-td'), " ", wp.element.createElement("a", {
-        href: dd_admin_vars.upgrade_url
-      }, __('Upgrade page', 'dload-delay-td')), "."), wp.element.createElement("p", null, __('Have any questions?', 'dload-delay-td'), " ", wp.element.createElement("a", {
-        href: dd_admin_vars.freemium.contact_url
-      }, __('Contact Us', 'dload-delay-td'))))))));
+      }, wp.element.createElement("h2", null, "\uD83D\uDC8E ", __('Thanks for using FDD plugin!', 'dload-delay-td')), wp.element.createElement("p", null, __('Is it useful for you? If so, please leave a 5* review on', 'dload-delay-td'), " ", wp.element.createElement("a", {
+        target: "_blank",
+        href: "https://wordpress.org/plugins/files-download-delay/#reviews"
+      }, "Wordpress.com"), " - ", __('it means a lot for me.', 'dload-delay-td'), " "), wp.element.createElement("p", null, __('For any suggestions and bug reports you can find my contacts there:', 'dload-delay-td'), " ", wp.element.createElement("a", {
+        target: "_blank",
+        href: "https://fdd.tonyandr.com"
+      }, __('Get in touch', 'dload-delay-td')), ".")), wp.element.createElement(PanelBody, {
+        className: "pro-version"
+      }, wp.element.createElement("h2", null, "\u2764\uFE0F ", __('Your support is vital!', 'dload-delay-td')), wp.element.createElement("a", {
+        href: "https://www.buymeacoffee.com/andropov",
+        target: "_blank"
+      }, wp.element.createElement("img", {
+        alt: "Buy me a beer",
+        src: dd_admin_vars.plugins_url + 'img/buy_beer.png'
+      })))))));
     }
   }]);
 

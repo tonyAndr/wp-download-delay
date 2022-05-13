@@ -77,7 +77,11 @@
                 background: #ffe0a8;
             }
             &.pro-version {
-                background: #d6ffa8;
+                background: #c2efff;
+                
+                img {
+                    width: 100%;
+                }
             }
             &.expired-version {
                 background: #ffaca8;

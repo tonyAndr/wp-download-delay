@@ -74,19 +74,6 @@ const withAdvancedControls = createHigherOrderComponent( ( BlockEdit ) => {
             delayTime,
         } = attributes;
 
-        // useEffect(() => {
-        // // If the File block had individual premium settings different from global,
-        // // and plugins version was downgraded to free version
-        // // we set individual settings equals global
-        // // otherwise there is no way to change them as toggles are hidden in free version
-        //     if (fdd_options.is_premium !== 'true' && allowedBlocks.includes( props.name )) {
-        //         setAttributes({
-        //             enableRedirect: fdd_options.page_redirect === 'true',
-        //             delayTime: fdd_options.delay_time
-        //         });
-        //     }
-        // });
-        
         return (
             <Fragment>
                 <BlockEdit {...props} />
@@ -102,7 +89,7 @@ const withAdvancedControls = createHigherOrderComponent( ( BlockEdit ) => {
                                 onChange={ () => setAttributes( {  enableDelay: ! enableDelay } ) }
                                 help={ !! enableDelay ? __( 'Show countdown.', 'dload-delay-td', 'dload-delay-td' ) : __( 'Download normally.', 'dload-delay-td' ) }
                             />
-                            { (enableDelay && fdd_options.is_premium === 'true') && (
+                            { (enableDelay) && (
                                 <>
                                     <ToggleControl
                                         label={ __( 'Open in new tab', 'dload-delay-td' ) }
@@ -116,10 +103,6 @@ const withAdvancedControls = createHigherOrderComponent( ( BlockEdit ) => {
                                         onChange={ (newTime) => setAttributes( {  delayTime: Number(newTime) } ) }
                                     />
                                 </>
-                            )
-                            }
-                            { (enableDelay && fdd_options.is_premium !== 'true') && (
-                                    <p>{__('You can adjust time delay or select whether to open the link in new tab individually in', 'dload-delay-td')} <a href={fdd_options.upgrade_url}>FDD Pro</a>.</p>
                             )
                             }
                         </PanelBody>

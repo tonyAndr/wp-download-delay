@@ -208,19 +208,7 @@ var withAdvancedControls = (0,external_wp_compose_namespaceObject.createHigherOr
         isSelected = props.isSelected;
     var enableDelay = attributes.enableDelay,
         enableRedirect = attributes.enableRedirect,
-        delayTime = attributes.delayTime; // useEffect(() => {
-    // // If the File block had individual premium settings different from global,
-    // // and plugins version was downgraded to free version
-    // // we set individual settings equals global
-    // // otherwise there is no way to change them as toggles are hidden in free version
-    //     if (fdd_options.is_premium !== 'true' && allowedBlocks.includes( props.name )) {
-    //         setAttributes({
-    //             enableRedirect: fdd_options.page_redirect === 'true',
-    //             delayTime: fdd_options.delay_time
-    //         });
-    //     }
-    // });
-
+        delayTime = attributes.delayTime;
     return wp.element.createElement(external_wp_element_namespaceObject.Fragment, null, wp.element.createElement(BlockEdit, props), isSelected && allowedBlocks.includes(name) && wp.element.createElement(external_wp_blockEditor_namespaceObject.InspectorControls, null, wp.element.createElement(external_wp_components_namespaceObject.PanelBody, {
       title: (0,external_wp_i18n_namespaceObject.__)('Download Delay Options', 'dload-delay-td'),
       initialOpen: true
@@ -233,7 +221,7 @@ var withAdvancedControls = (0,external_wp_compose_namespaceObject.createHigherOr
         });
       },
       help: !!enableDelay ? (0,external_wp_i18n_namespaceObject.__)('Show countdown.', 'dload-delay-td', 'dload-delay-td') : (0,external_wp_i18n_namespaceObject.__)('Download normally.', 'dload-delay-td')
-    }), enableDelay && fdd_options.is_premium === 'true' && wp.element.createElement(React.Fragment, null, wp.element.createElement(external_wp_components_namespaceObject.ToggleControl, {
+    }), enableDelay && wp.element.createElement(React.Fragment, null, wp.element.createElement(external_wp_components_namespaceObject.ToggleControl, {
       label: (0,external_wp_i18n_namespaceObject.__)('Open in new tab', 'dload-delay-td'),
       checked: !!enableRedirect,
       onChange: function onChange() {
@@ -250,9 +238,7 @@ var withAdvancedControls = (0,external_wp_compose_namespaceObject.createHigherOr
           delayTime: Number(newTime)
         });
       }
-    })), enableDelay && fdd_options.is_premium !== 'true' && wp.element.createElement("p", null, (0,external_wp_i18n_namespaceObject.__)('You can adjust time delay or select whether to open the link in new tab individually in', 'dload-delay-td'), " ", wp.element.createElement("a", {
-      href: fdd_options.upgrade_url
-    }, "FDD Pro"), "."))));
+    })))));
   };
 }, 'withAdvancedControls');
 /**

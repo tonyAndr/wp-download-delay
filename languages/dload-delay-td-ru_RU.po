@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Files Download Delay 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/files-download-"
 "delay\n"
-"POT-Creation-Date: 2022-02-10T09:28:39+00:00\n"
-"PO-Revision-Date: 2022-02-10 10:32+0100\n"
+"POT-Creation-Date: 2022-05-05T11:11:57+00:00\n"
+"PO-Revision-Date: 2022-05-05 13:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -42,16 +42,12 @@ msgid "tonyandr.com"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://tonyandr.com/"
+msgid "https://fdd.tonyandr.com/"
 msgstr ""
 
-#: admin.php:197
+#: admin.php:193
 msgid "You don't have permission to see this page."
 msgstr "У вас нет доступа к этой странице."
-
-#: admin.php:202
-msgid "Settings"
-msgstr "Настройки"
 
 #: build/admin.js:19
 msgid ""
@@ -228,93 +224,30 @@ msgstr ""
 "будет равен 100-[выбранное значение]%."
 
 #: build/admin.js:19
-msgid "Upgrade to Pro Now!"
-msgstr "Обновитесь до Pro прямо сейчас!"
+msgid "Thanks for using FDD plugin!"
+msgstr "Спасибо за использование плагина FDD!"
 
 #: build/admin.js:19
-msgid "Premium version has some nice extra options available:"
-msgstr "В премиум версии доступны прикольные дополнительные опции:"
+msgid "Is it useful for you? If so, please leave a 5* review on"
+msgstr "Полезен ли он для вас? Если да, пожалуйста, оставьте 5* рейтинг на"
 
 #: build/admin.js:19
-msgid "Layout Customization"
-msgstr "Расширенные опции внешнего вида блока с таймером"
+msgid "it means a lot for me."
+msgstr "это много для меня значит."
 
 #: build/admin.js:19
-msgid "Separate delay and new tab option for each link"
-msgstr "Индивидуальные настройки времени задержки и открытия в новой вкладке"
-
-#: build/admin.js:19
-msgid "JavaScript Permitted (Ads Support)"
-msgstr "Поддержка JavaScript тегов в контенте блоков с таймером"
-
-#: build/admin.js:19
-msgid "Priority Tech Support via Email"
-msgstr "Приоритетная тех. поддержка по почте"
-
-#: build/admin.js:19
-msgid "Check out our upgrade plans here:"
-msgstr "Узнайте об апгрейде по ссылке:"
-
-#: build/admin.js:19
-msgid "Get FDD Pro"
-msgstr "Получить FDD Pro"
-
-#: build/admin.js:19
-msgid "Pro Plan Activated"
-msgstr "Pro Версия Активирована"
-
-#: build/admin.js:19
-msgid "You can check your license status and account settings here:"
-msgstr "Проверьте статус лицензии в личном кабинете:"
-
-#: build/admin.js:19
-msgid "Account Page"
-msgstr "Личный кабинет"
-
-#: build/admin.js:19
-msgid "In trouble?"
-msgstr "Есть проблемы?"
-
-#: build/admin.js:19
-msgid "Contact Us"
-msgstr "Свяжитесь с нами"
-
-#: build/admin.js:19
-msgid "Activate Your License"
-msgstr "Активируйте вашу лицензию"
-
-#: build/admin.js:19
-msgid ""
-"You have premium version of the plugin installed but your license key is "
-"missing or expired."
+msgid "For any suggestions and bug reports you can find my contacts there:"
 msgstr ""
-"У вас установлена премиум-версия плагина, но ваш лицензионный ключ "
-"отсутствует или срок действия истек."
+"Для любых предложений и сообщений об ошибках вы можете найти мои контакты "
+"тут:"
 
 #: build/admin.js:19
-msgid "Go to your account page to activate the plugin:"
-msgstr "Для активации плагина перейдите в личный кабинет:"
+msgid "Get in touch"
+msgstr "Связаться со разработчиком"
 
 #: build/admin.js:19
-msgid ""
-"You won't be getting new plugin updates or the Priority Tech Support, but "
-"all other premium features are still available to use."
-msgstr ""
-"Вы не будете получать новые обновления плагина или приоритетную техническую "
-"поддержку, но все остальные премиум-функции по-прежнему доступны для "
-"использования."
-
-#: build/admin.js:19
-msgid "You can renew your license key here:"
-msgstr "Вы можете продлить или обновить лицензию тут:"
-
-#: build/admin.js:19
-msgid "Upgrade page"
-msgstr "Обновить лицензию"
-
-#: build/admin.js:19
-msgid "Have any questions?"
-msgstr "Возникли вопросы?"
+msgid "Your support is vital!"
+msgstr "Ваша поддержка жизненно важна!"
 
 #: build/block.js:19
 msgid "Download Delay Options"
@@ -336,12 +269,84 @@ msgstr "Обычное скачивание."
 msgid "Delay Time in Seconds"
 msgstr "Задержка в секундах"
 
-#: build/block.js:19
-msgid ""
-"You can adjust time delay or select whether to open the link in new tab "
-"individually in"
-msgstr ""
-"Вы можете настроить задержку и открытие в новой вкладке индивидуально в"
+#~ msgid "Settings"
+#~ msgstr "Настройки"
+
+#~ msgid "Upgrade to Pro Now!"
+#~ msgstr "Обновитесь до Pro прямо сейчас!"
+
+#~ msgid "Premium version has some nice extra options available:"
+#~ msgstr "В премиум версии доступны прикольные дополнительные опции:"
+
+#~ msgid "Layout Customization"
+#~ msgstr "Расширенные опции внешнего вида блока с таймером"
+
+#~ msgid "Separate delay and new tab option for each link"
+#~ msgstr ""
+#~ "Индивидуальные настройки времени задержки и открытия в новой вкладке"
+
+#~ msgid "JavaScript Permitted (Ads Support)"
+#~ msgstr "Поддержка JavaScript тегов в контенте блоков с таймером"
+
+#~ msgid "Priority Tech Support via Email"
+#~ msgstr "Приоритетная тех. поддержка по почте"
+
+#~ msgid "Check out our upgrade plans here:"
+#~ msgstr "Узнайте об апгрейде по ссылке:"
+
+#~ msgid "Get FDD Pro"
+#~ msgstr "Получить FDD Pro"
+
+#~ msgid "Pro Plan Activated"
+#~ msgstr "Pro Версия Активирована"
+
+#~ msgid "You can check your license status and account settings here:"
+#~ msgstr "Проверьте статус лицензии в личном кабинете:"
+
+#~ msgid "Account Page"
+#~ msgstr "Личный кабинет"
+
+#~ msgid "In trouble?"
+#~ msgstr "Есть проблемы?"
+
+#~ msgid "Contact Us"
+#~ msgstr "Свяжитесь с нами"
+
+#~ msgid "Activate Your License"
+#~ msgstr "Активируйте вашу лицензию"
+
+#~ msgid ""
+#~ "You have premium version of the plugin installed but your license key is "
+#~ "missing or expired."
+#~ msgstr ""
+#~ "У вас установлена премиум-версия плагина, но ваш лицензионный ключ "
+#~ "отсутствует или срок действия истек."
+
+#~ msgid "Go to your account page to activate the plugin:"
+#~ msgstr "Для активации плагина перейдите в личный кабинет:"
+
+#~ msgid ""
+#~ "You won't be getting new plugin updates or the Priority Tech Support, but "
+#~ "all other premium features are still available to use."
+#~ msgstr ""
+#~ "Вы не будете получать новые обновления плагина или приоритетную "
+#~ "техническую поддержку, но все остальные премиум-функции по-прежнему "
+#~ "доступны для использования."
+
+#~ msgid "You can renew your license key here:"
+#~ msgstr "Вы можете продлить или обновить лицензию тут:"
+
+#~ msgid "Upgrade page"
+#~ msgstr "Обновить лицензию"
+
+#~ msgid "Have any questions?"
+#~ msgstr "Возникли вопросы?"
+
+#~ msgid ""
+#~ "You can adjust time delay or select whether to open the link in new tab "
+#~ "individually in"
+#~ msgstr ""
+#~ "Вы можете настроить задержку и открытие в новой вкладке индивидуально в"
 
 #, fuzzy
 #~| msgid "Account Page"

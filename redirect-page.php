@@ -3,12 +3,18 @@
     $delay_time = get_option('dload_delay_time');
 
     include_once(__DIR__ . "/post.php");
-    $fdd_front = new Download_Delay_Post();
+    $fdd_front = new DownloadDelayPost();
     $template_wait = $fdd_front->read_html_template('');
     $template_success = $fdd_front->read_html_template('_success');
     $template_failed = $fdd_front->read_html_template('_failed');
     $fdd_custom_styles = $fdd_front->add_customized_styles();
-
+    $fdd_vars = [
+        "url_id" => $url_id,
+        "template_wait" => $template_wait,
+        "template_success" => $template_success,
+        "template_failed" => $template_failed,
+        "delay_time" => $delay_time,
+    ];
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -22,7 +28,7 @@
         <?php require_once(plugin_dir_path(__FILE__) . 'build/redirect.css'); ?>
     </style>
     <style>
-        <?= $fdd_custom_styles ?>
+        <?php echo wp_filter_nohtml_kses($fdd_custom_styles); ?>
     </style>
     <title>Download Redirect...</title>
 
@@ -33,20 +39,8 @@
 
     </div>
 
-
     <script type="text/javascript">
-        <?php
-        $js_vars = "
-                const fdd_vars = {
-                    url_id: '$url_id',
-                    template_wait: " . json_encode($template_wait) . ",
-                    template_success: " . json_encode($template_success) . ",
-                    template_failed: " . json_encode($template_failed) . ",
-                    delay_time: $delay_time,
-                };
-            ";
-        echo $js_vars;
-        ?>
+        const fdd_vars = <?php echo wp_json_encode($fdd_vars); ?>;
         <?php require_once(plugin_dir_path(__FILE__) . 'build/redirect.js'); ?>
     </script>
 </body>

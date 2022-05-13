@@ -1,6 +1,6 @@
 <?php
 
-class Download_Delay_Remove
+class DownloadDelayRemove
 {
     public static function uninstall() {
         global $wpdb;

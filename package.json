@@ -38,6 +38,7 @@
 		"@wordpress/components": "^19.2.0",
 		"@wordpress/i18n": "^4.2.4",
 		"font-color-contrast": "^11.1.0",
+		"react-helmet": "^6.1.0",
 		"rgb-hex": "^4.0.0"
 	}
 }

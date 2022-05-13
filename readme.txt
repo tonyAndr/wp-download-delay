@@ -1,9 +1,9 @@
 === Files Download Delay ===
 Tags: files, download, delay, documents, media
 Requires at least: 5.5
-Tested up to: 5.9
+Tested up to: 5.9.3
 Requires PHP: 7.2
-Stable tag: 1.0
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,6 +47,12 @@ If your download links don't have file extensions (ex: domain.com/files/download
 3. Auto-wrap options on the plugin's settings page
 
 == Changelog ==
+
+= 1.0.7 = 
+* Minor security fixes
+
+= 1.0.6 = 
+* Removed Freemius libs & premium version
 
 = 1.0.5 = 
 * Vulnerability fixes

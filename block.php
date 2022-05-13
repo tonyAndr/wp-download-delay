@@ -1,7 +1,7 @@
 <?php
 
 
-class Download_Delay_Block
+class DownloadDelayBlock
 {
     private $assets;
     private $plugin_dir_path;
@@ -24,8 +24,6 @@ class Download_Delay_Block
         wp_localize_script( 'seocherry-block-fdd-extend', 'fdd_options', array(
             'delay_time'                => get_option('dload_delay_time'),
             'page_redirect'             => json_encode(filter_var(get_option('dload_delay_enable_redirect'), FILTER_VALIDATE_BOOLEAN)),
-            'is_premium'                => json_encode(fdd_fs()->is_premium()),
-            'upgrade_url'               => fdd_fs()->get_upgrade_url(),
         ) );
     
         wp_set_script_translations('seocherry-block-fdd-extend', 'dload-delay-td', $this->plugin_dir_path . 'languages/' );

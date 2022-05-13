@@ -1,6 +1,6 @@
 <?php
 
-class Download_Delay_Redirect
+class DownloadDelayRedirect
 {
     public static function enable() {        
         // redirect for file downloads

@@ -34,7 +34,6 @@ const {
     Fragment
 } = wp.element;
 
-
 /**
  * Internal dependencies
  */
@@ -46,6 +45,7 @@ class App extends Component {
 
         this.changeOptions = this.changeOptions.bind(this);
         this.parseOptions = this.parseOptions.bind(this);
+        this.loadOptions = this.loadOptions.bind(this);
         this.validateDownloadClassName = this.validateDownloadClassName.bind(this);
 
         this.state = {
@@ -74,6 +74,10 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this.loadOptions();
+    }
+
+    loadOptions() {
         wp.api.loadPromise.then(() => {
             this.settings = new wp.api.models.Settings();
 
@@ -90,12 +94,12 @@ class App extends Component {
         // console.log(response)
         this.setState({
             dload_delay_time: parseInt(response.dload_delay_time),
-            dload_delay_cd_text: response.dload_delay_cd_text,
-            dload_delay_info_text: response.dload_delay_info_text,
-            dload_delay_success_cd_text: response.dload_delay_success_cd_text,
-            dload_delay_success_info_text: response.dload_delay_success_info_text,
-            dload_delay_failed_cd_text: response.dload_delay_failed_cd_text,
-            dload_delay_failed_info_text: response.dload_delay_failed_info_text,
+            dload_delay_cd_text: JSON.parse(response.dload_delay_cd_text),
+            dload_delay_info_text: JSON.parse(response.dload_delay_info_text),
+            dload_delay_success_cd_text: JSON.parse(response.dload_delay_success_cd_text),
+            dload_delay_success_info_text: JSON.parse(response.dload_delay_success_info_text),
+            dload_delay_failed_cd_text: JSON.parse(response.dload_delay_failed_cd_text),
+            dload_delay_failed_info_text: JSON.parse(response.dload_delay_failed_info_text),
             dload_delay_extensions: response.dload_delay_extensions,
             dload_delay_autowrap: response.dload_delay_autowrap,
             dload_delay_enable_redirect: response.dload_delay_enable_redirect,
@@ -126,14 +130,15 @@ class App extends Component {
     }
 
     restoreOptions() {
-        this.setState({ isAPISaving: true });
+        this.setState({ isAPISaving: true, isAPILoaded: false });
 
         fetch(dd_admin_vars.ajax_url + '?action=ddlay_restore_defaults' + '&_ajax_nonce='+dd_admin_vars.dd_security)
-        .then(res => res.json())
-        .then(res => {
-            // console.log(res);
-            this.parseOptions(res);
-        });
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+
+                this.loadOptions();
+            });
     }
 
     validateDownloadClassName (value) {
@@ -270,7 +275,7 @@ class App extends Component {
                                                     <BaseControl
                                                         label={__('Body', 'dload-delay-td')}
                                                         // help={__('Insert any text, subsciption form, advertisments, etc. HTML and shortcodes are allowed.', 'dload-delay-td')}
-                                                        help={dd_admin_vars.free_version === 'true' ? allowedContentFree : allowedContentPro}
+                                                        help={allowedContentPro}
                                                         id="fdd-input-cd-info"
                                                         className="codeinwp-text-field"
                                                     >
@@ -321,7 +326,7 @@ class App extends Component {
                                                 <PanelRow className="border-success">
                                                     <BaseControl
                                                         label={__('Body', 'dload-delay-td')}
-                                                        help={dd_admin_vars.free_version === 'true' ? allowedContentFree : allowedContentPro}
+                                                        help={allowedContentPro}
                                                         id="fdd-input-success-info"
                                                         className="codeinwp-text-field"
                                                     >
@@ -369,7 +374,7 @@ class App extends Component {
                                                 <PanelRow className="border-failed">
                                                     <BaseControl
                                                         label={__('Body', 'dload-delay-td')}
-                                                        help={dd_admin_vars.free_version === 'true' ? allowedContentFree : allowedContentPro}
+                                                        help={allowedContentPro}
                                                         id="fdd-input-failed-info"
                                                         className="codeinwp-text-field"
                                                     >
@@ -443,68 +448,66 @@ class App extends Component {
                                     </BaseControl>
                                 </PanelRow>
                             </PanelBody>
-                            {dd_admin_vars.free_version !== 'true' && 
-                            (
-                                <PanelBody>
-                                    <h2>{__('Block Customizer', 'dload-delay-td')}</h2>
-                                    {!this.state.dload_delay_enable_redirect && (
-                                    <>
-                                        <PanelRow>
-                                            <ToggleControl
-                                                label={__('Enable shadow', 'dload-delay-td')}
-                                                checked={ Boolean(this.state.dload_delay_drop_shadow) }
-                                                disabled={this.state.isAPISaving}
-                                                onChange={ value => this.setState({dload_delay_drop_shadow: Number(value)}) }
-                                            />
-                                        </PanelRow>
-                                        <PanelRow>                        
-                                            <BaseControl
-                                                label={__('Border radius', 'dload-delay-td')}
-                                                id="fdd-input-border-radius"
-                                                help={__('Specify border radius in px', 'dload-delay-td')}
-                                                className="codeinwp-text-field"
-                                            >
-                                                <input
-                                                    id="fdd-input-border-radius"
-                                                    type="number"
-                                                    min={0}
-                                                    max={100}
-                                                    value={this.state.dload_delay_border_radius}
-                                                    disabled={this.state.isAPISaving}
-                                                    onChange={e => this.setState({ dload_delay_border_radius: e.target.value })}
-                                                />
-                                            </BaseControl>
-                                        </PanelRow>
 
-                                        <h3>{__('Layout settings', 'dload-delay-td')}</h3>
-                                        <PanelRow>
-                                            <FlexBlock>
-                                                <RadioGroup 
-                                                    label={__('Layout Direction', 'dload-delay-td')}
-                                                    onChange={ value => this.setState({ dload_delay_layout: value }) } 
-                                                    checked={ this.state.dload_delay_layout }
-                                                    help={__('Switch between 2 fullwidth rows or 2 columns. ', 'dload-delay-td')}>
-                                                    <Radio value="column">{__('Rows', 'dload-delay-td')}<img className='fdd-layout-icon' src={dd_admin_vars.plugins_url + 'img/row.svg'} /></Radio>
-                                                    <Radio value="row">{__('Columns', 'dload-delay-td')}<img className='fdd-layout-icon' src={dd_admin_vars.plugins_url + 'img/column.svg'} /></Radio>
-                                                </RadioGroup>
-                                            </FlexBlock>
-                                            <FlexBlock>
-                                                <RangeControl
-                                                    label={__('Columns width', 'dload-delay-td')}
-                                                    help={__('Relative width in %. Set left column\'s width, right column will be 100-[selected value]%.', 'dload-delay-td')}
-                                                    value={ this.state.dload_delay_column_width }
-                                                    onChange={ ( value ) => this.setState({ dload_delay_column_width: value }) }
-                                                    min={ 20 }
-                                                    max={ 80 }
-                                                    step={10}
-                                                />
-                                            </FlexBlock>
-                                        </PanelRow>
-                                    </>
-                                    )}
-                                    
-                                </PanelBody>
-                            )}
+                            <PanelBody>
+                                <h2>{__('Block Customizer', 'dload-delay-td')}</h2>
+                                {!this.state.dload_delay_enable_redirect && (
+                                <>
+                                    <PanelRow>
+                                        <ToggleControl
+                                            label={__('Enable shadow', 'dload-delay-td')}
+                                            checked={ Boolean(this.state.dload_delay_drop_shadow) }
+                                            disabled={this.state.isAPISaving}
+                                            onChange={ value => this.setState({dload_delay_drop_shadow: Number(value)}) }
+                                        />
+                                    </PanelRow>
+                                    <PanelRow>                        
+                                        <BaseControl
+                                            label={__('Border radius', 'dload-delay-td')}
+                                            id="fdd-input-border-radius"
+                                            help={__('Specify border radius in px', 'dload-delay-td')}
+                                            className="codeinwp-text-field"
+                                        >
+                                            <input
+                                                id="fdd-input-border-radius"
+                                                type="number"
+                                                min={0}
+                                                max={100}
+                                                value={this.state.dload_delay_border_radius}
+                                                disabled={this.state.isAPISaving}
+                                                onChange={e => this.setState({ dload_delay_border_radius: e.target.value })}
+                                            />
+                                        </BaseControl>
+                                    </PanelRow>
+
+                                    <h3>{__('Layout settings', 'dload-delay-td')}</h3>
+                                    <PanelRow>
+                                        <FlexBlock>
+                                            <RadioGroup 
+                                                label={__('Layout Direction', 'dload-delay-td')}
+                                                onChange={ value => this.setState({ dload_delay_layout: value }) } 
+                                                checked={ this.state.dload_delay_layout }
+                                                help={__('Switch between 2 fullwidth rows or 2 columns. ', 'dload-delay-td')}>
+                                                <Radio value="column">{__('Rows', 'dload-delay-td')}<img className='fdd-layout-icon' src={dd_admin_vars.plugins_url + 'img/row.svg'} /></Radio>
+                                                <Radio value="row">{__('Columns', 'dload-delay-td')}<img className='fdd-layout-icon' src={dd_admin_vars.plugins_url + 'img/column.svg'} /></Radio>
+                                            </RadioGroup>
+                                        </FlexBlock>
+                                        <FlexBlock>
+                                            <RangeControl
+                                                label={__('Columns width', 'dload-delay-td')}
+                                                help={__('Relative width in %. Set left column\'s width, right column will be 100-[selected value]%.', 'dload-delay-td')}
+                                                value={ this.state.dload_delay_column_width }
+                                                onChange={ ( value ) => this.setState({ dload_delay_column_width: value }) }
+                                                min={ 20 }
+                                                max={ 80 }
+                                                step={10}
+                                            />
+                                        </FlexBlock>
+                                    </PanelRow>
+                                </>
+                                )}
+                                
+                            </PanelBody>
                             
                             <PanelBody>
                                 <PanelRow>
@@ -530,36 +533,16 @@ class App extends Component {
                     </FlexItem>
                     <FlexItem>
                         <div className="fdd-sidebar">
-                            {dd_admin_vars.free_version === 'true' && (
-                                <PanelBody className="free-version">
-                                    <h2>💎 {__('Upgrade to Pro Now!', 'dload-delay-td')}</h2>
-                                    <p>{__('Premium version has some nice extra options available:', 'dload-delay-td')} </p>
-                                    <ol>
-                                        <li>{__('Layout Customization', 'dload-delay-td')}</li>
-                                        <li>{__('Separate delay and new tab option for each link', 'dload-delay-td')}</li>
-                                        <li>{__('JavaScript Permitted (Ads Support)', 'dload-delay-td')}</li>
-                                        <li>{__('Priority Tech Support via Email', 'dload-delay-td')}</li>
-                                    </ol>
-                                    <p>{__('Check out our upgrade plans here:', 'dload-delay-td')} <a href={dd_admin_vars.upgrade_url}>{__('Get FDD Pro', 'dload-delay-td')}</a>.</p>
-                                </PanelBody>
-                            )}
-                            {(dd_admin_vars.free_version === 'false' && dd_admin_vars.is_paying === 'true') && (
-                                <PanelBody className="pro-version">
-                                    <h2>😃 {__('Pro Plan Activated', 'dload-delay-td')}</h2>
-                                    <p>{__('You can check your license status and account settings here:', 'dload-delay-td')} <a href={dd_admin_vars.freemium.account_url}>{__('Account Page', 'dload-delay-td')}</a></p>
-                                    <p>{__('In trouble?', 'dload-delay-td')} <a href={dd_admin_vars.freemium.contact_url}>{__('Contact Us', 'dload-delay-td')}</a></p>
-                                </PanelBody>
-                            )}
-                            {(dd_admin_vars.free_version === 'false' && dd_admin_vars.is_paying === 'false') && (
-                                <PanelBody className="expired-version">
-                                    <h2>😟 {__('Activate Your License', 'dload-delay-td')}</h2>
-                                    <p>{__('You have premium version of the plugin installed but your license key is missing or expired.', 'dload-delay-td')}</p>
-                                    <p>{__('Go to your account page to activate the plugin:', 'dload-delay-td')} <a href={dd_admin_vars.freemium.account_url}>{__('Account Page', 'dload-delay-td')}</a>.</p>
-                                    <p>{__('You won\'t be getting new plugin updates or the Priority Tech Support, but all other premium features are still available to use.', 'dload-delay-td')}</p> 
-                                    <p>{__('You can renew your license key here:', 'dload-delay-td')} <a href={dd_admin_vars.upgrade_url}>{__('Upgrade page', 'dload-delay-td')}</a>.</p>
-                                    <p>{__('Have any questions?', 'dload-delay-td')} <a href={dd_admin_vars.freemium.contact_url}>{__('Contact Us', 'dload-delay-td')}</a></p>
-                                </PanelBody> 
-                            )}
+                            <PanelBody className="pro-version">
+                                <h2>💎 {__('Thanks for using FDD plugin!', 'dload-delay-td')}</h2>
+                                <p>{__('Is it useful for you? If so, please leave a 5* review on', 'dload-delay-td')} <a target="_blank" href="https://wordpress.org/plugins/files-download-delay/#reviews">Wordpress.com</a> - {__('it means a lot for me.', 'dload-delay-td')} </p>
+                                <p>{__('For any suggestions and bug reports you can find my contacts there:', 'dload-delay-td')} <a target="_blank" href="https://fdd.tonyandr.com">{__('Get in touch', 'dload-delay-td')}</a>.</p>
+                            </PanelBody>
+
+                            <PanelBody className="pro-version">
+                                <h2>❤️ {__('Your support is vital!', 'dload-delay-td')}</h2>
+                                <a href="https://www.buymeacoffee.com/andropov" target="_blank"><img alt="Buy me a beer" src={dd_admin_vars.plugins_url + 'img/buy_beer.png'}/></a>
+                            </PanelBody>
                         </div> 
                     </FlexItem>
                 </Flex>
